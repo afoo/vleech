@@ -3,6 +3,7 @@
 import glob
 import os
 import sys
+import re
 import urllib2
 import urlparse
 from subprocess import call
@@ -14,19 +15,40 @@ from vleech.siteplugins import *
 __all__ = ['main']
 
 class Config(object):
+    KEYS = (
+        'plugin_dir',
+        'user_agent',
+        'downloader')
+
+    # defaults
     plugin_dir = os.path.join(os.environ['HOME'], '.vleech/siteplugins/')
     user_agent = 'Mozilla'
     downloader = 'curl' # or wget
 
+    def __init__(self):
+        try:
+            cf = open(os.path.join(os.environ['HOME'], '.vleech/config'))
+            config = cf.read()
+            cf.close()
+        except IOError:
+            config = ''
+        for line in config.splitlines():
+            try:
+                key, value = re.split(r'\s*=\s*', line)
+            except ValueError:
+                continue
+            if key in self.KEYS:
+                setattr(self, key, value)
+            else:
+                warn('uknown config key: ' + key)
+
+                     
 def err(msg):
     sys.stderr.write('ERROR: %s\n' % (msg,))
     sys.exit(1)
 
 def warn(msg):
     sys.stderr.write('WARNING: %s\n' % (msg,))
-
-def load_config():
-    return Config()
 
 def load_plugins(config):
     if not os.path.exists(config.plugin_dir):
@@ -40,9 +62,9 @@ def make_video_filename(title, type):
     return title.lower().replace(' ', '_') + '.' + type
 
 def main(argv):
-    if len(argv) == 2:
+    if len(argv) != 2:
         err('USAGE: vleech <url>')
-    config = load_config()
+    config = Config()
     load_plugins(config)
     url = argv[1]
     plugin = None

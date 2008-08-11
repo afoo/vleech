@@ -13,15 +13,8 @@ class GoogleVideo(Plugin):
     TITLE_RE = re.compile(r'titlebar-title">(.*?)</div>', re.M)
 
     def parse(self, url, data):
-        m = self.URL_RE.search(data)
-        if m is None:
-            raise PluginError('could not find video url')
-        video_url = m.group(1)
-
-        m = self.TITLE_RE.search(data)
-        if m is None:
-            raise PluginError('could not find title')
-        title = m.group(1)
+        video_url = self._data_search(self.URL_RE, data, 'could not find video url')
+        title = self._data_search(self.TITLE_RE, data, 'could not find title')
 
         return video_url, title, 'mp4'
         

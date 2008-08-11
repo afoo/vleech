@@ -15,7 +15,7 @@ __all__ = ['main']
 class Config(object):
     plugin_dir = os.path.join(os.environ['HOME'], '.vleech/siteplugins/')
     user_agent = 'Mozilla'
-    downloader = 'wget' # or wget
+    downloader = 'curl' # or wget
 
 def err(msg):
     sys.stderr.write('ERROR: %s\n' % (msg,))

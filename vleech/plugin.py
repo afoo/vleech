@@ -32,6 +32,15 @@ class Plugin(object):
         'parse a video page and return a (video_url, video_title, video_type) tuple'
         raise NotImplementedError('every plugin must implement a parse(url, data) method')
 
+    # helper methods
+
+    def _data_search(self, regexp, data, error=''):
+        'search data for re, raise PluginError if not found, else return group 1'
+        m = regexp.search(data)
+        if m is None:
+            raise PluginError(error)
+        return m.group(1)
+
     
             
     

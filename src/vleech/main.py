@@ -14,6 +14,7 @@ __all__ = ['main']
 class Config(object):
     plugin_dir = '../siteplugins/'
     user_agent = 'Mozilla'
+    downloader = 'wget' # or wget
 
 def err(msg):
     sys.stderr.write('ERROR: %s\n' % (msg,))
@@ -55,4 +56,11 @@ def main(argv):
     print 'video title:', video_title
     video_file = make_video_filename(video_title, video_type)
     print 'filename:', video_file
-    call(('curl', '-L', '-o', video_file, '-A', config.user_agent, video_url))
+    downloaders = dict(
+        curl = lambda f, url: ('curl', '-L', '-o', f, '-A', config.user_agent, url),
+        wget = lambda f, url: ('wget', '-O', f, '-U', config.user_agent, url))
+    cmd = downloaders.get(config.downloader)
+    if cmd is None:
+        err('no valid downloader configured')
+    call(cmd(video_file, video_url))
+    

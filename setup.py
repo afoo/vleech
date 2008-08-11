@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from distutils.core import setup
+import glob
 
 setup(name='vleech',
       version='0.1',
       description='A video leecher for sites like youtube',
-      author=u'Jan Hülsbergen',
+      author='Jan Huelsbergen',
       author_email='jan@afoo.de',
-      packages=('vleech',),
-      scripts=('src/vleech.py',))
+      url='http://github.com/justafoo/vleech/',
+      packages=['vleech', 'vleech.siteplugins'],
+      scripts=['vleech.py'])

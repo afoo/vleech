@@ -1,0 +1,4 @@
+this is vleech, a simple downloader for video sites like youtube
+
+to install:
+python setup.py install

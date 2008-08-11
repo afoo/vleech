@@ -7,7 +7,8 @@ import urllib2
 import urlparse
 from subprocess import call
 
-from vleech.plugin import plugins
+from vleech.plugin import plugins, PluginError
+from vleech.siteplugins import *
 
 
 __all__ = ['main']

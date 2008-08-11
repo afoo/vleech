@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 from vleech.plugin import Plugin, PluginError
 
@@ -29,7 +30,4 @@ class Youtube(Plugin):
             raise PluginError('could not find title')
         title = m.group(1)
 
-        return url, title
-        
-
-
+        return url, title, 'mp4'

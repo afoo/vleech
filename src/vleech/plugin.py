@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''plugin-foo
 
 just inherit from vleech.plugin.Plugin
@@ -28,7 +29,7 @@ class Plugin(object):
     __metaclass__ = MetaPlugin
 
     def parse(self, url, data):
-        'parse a video page and return a (video_url, video_title) tuple'
+        'parse a video page and return a (video_url, video_title, video_type) tuple'
         raise NotImplementedError('every plugin must implement a parse(url, data) method')
 
     

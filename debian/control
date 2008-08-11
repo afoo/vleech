@@ -1,0 +1,20 @@
+Source: vleech
+Section: net
+Priority: extra
+Maintainer: Jan Hülsbergen <afoo42@gmail.com>
+Build-Depends: cdbs (>= 0.4.49), debhelper (>= 7), python-central (>= 0.6), python
+Standards-Version: 3.7.3
+XS-Python-Version: all
+Homepage: http://github.com/justafoo/vleech/tree/master
+
+Package: vleech
+Architecture: all
+XB-Python-Version: ${python:Versions}
+Depends: ${python:Depends}, curl | wget
+Description: A simple downloader for youtube-like video sites
+ Download video files from sites like youtube.
+ Currently plugins are provided for:
+ * youtube
+ * google video
+ .
+ It is easy to write your own plugins to support more sites

@@ -9,10 +9,11 @@ from subprocess import call
 
 from vleech.plugin import plugins
 
+
 __all__ = ['main']
 
 class Config(object):
-    plugin_dir = '../siteplugins/'
+    plugin_dir = os.path.join(os.environ['HOME'], '.vleech/siteplugins/')
     user_agent = 'Mozilla'
     downloader = 'wget' # or wget
 
@@ -27,6 +28,9 @@ def load_config():
     return Config()
 
 def load_plugins(config):
+    from vleech.siteplugins import *
+    if not os.path.exists(config.plugin_dir):
+        os.makedirs(config.plugin_dir)
     sys.path.insert(0, config.plugin_dir)
     for plugin in glob.glob(os.path.join(config.plugin_dir, '*.py')):
         __import__(os.path.basename(plugin)[:-3])

@@ -11,4 +11,10 @@ setup(name='vleech',
       author_email='jan@afoo.de',
       url='http://github.com/justafoo/vleech/',
       packages=['vleech', 'vleech.siteplugins'],
-      scripts=['vleech.py'])
+      scripts=['vleech.py'],
+      classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
+        'Intended Audience :: End Users/Desktop',
+        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Operating System :: Unix'])

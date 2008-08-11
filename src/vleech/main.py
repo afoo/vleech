@@ -29,7 +29,6 @@ def load_config():
     return Config()
 
 def load_plugins(config):
-    from vleech.siteplugins import *
     if not os.path.exists(config.plugin_dir):
         os.makedirs(config.plugin_dir)
     sys.path.insert(0, config.plugin_dir)
@@ -41,6 +40,8 @@ def make_video_filename(title, type):
     return title.lower().replace(' ', '_') + '.' + type
 
 def main(argv):
+    if len(argv) == 2:
+        err('USAGE: vleech <url>')
     config = load_config()
     load_plugins(config)
     url = argv[1]

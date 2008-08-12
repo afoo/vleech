@@ -2,6 +2,7 @@
 '''plugin-foo
 
 just inherit from vleech.plugin.Plugin
+and implement the parse(self, url, data) method.
 '''
 
 __all__ = ['PluginError', 'plugins', 'Plugin']
@@ -11,6 +12,7 @@ class PluginError(Exception):
 
 # global plugin registry
 plugins = dict()
+
 
 class MetaPlugin(type):
     'meta class to automatically register plugins with the plugin registry'
@@ -36,6 +38,8 @@ class Plugin(object):
 
     def _data_search(self, regexp, data, error=''):
         'search data for re, raise PluginError if not found, else return group 1'
+        if isinstance(regexp, basestring):
+            regexp = re.compile(regexp, re.M)
         m = regexp.search(data)
         if m is None:
             raise PluginError(error)

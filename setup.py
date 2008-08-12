@@ -5,7 +5,7 @@ from distutils.core import setup
 import glob
 
 setup(name='vleech',
-      version='0.1.1',
+      version='0.2',
       description='A video leecher for sites like youtube',
       author='Jan Huelsbergen',
       author_email='jan@afoo.de',

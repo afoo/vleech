@@ -9,8 +9,8 @@ class Break(Plugin):
 
     site = 'break.com'
 
-    PATH_RE = re.compile(r'ContentFilePath=\'(.*?)\'', re.M)
-    NAME_RE = re.compile(r'FileName=\'(.*?)\'', re.M)
+    PATH_RE = r'ContentFilePath=\'(.*?)\''
+    NAME_RE = r'FileName=\'(.*?)\''
 
     def parse(self, url, data):
         path = self._data_search(self.PATH_RE, data, 'file path not found')

@@ -8,9 +8,9 @@ class Youtube(Plugin):
 
     site = 'youtube.com'
 
-    ID_RE = re.compile(r'video_id=(.*?)&', re.M)
-    T_RE  = re.compile(r'&t=(.*?)&', re.M)
-    TITLE_RE = re.compile(r'&title=(.*)\'', re.M)
+    ID_RE    = r'video_id=(.*?)&'
+    T_RE     = r'&t=(.*?)&'
+    TITLE_RE = r'&title=(.*)\''
 
     def parse(self, url, data):
         video_id = self._data_search(self.ID_RE, data, 'could not find video id')

@@ -75,7 +75,11 @@ def main(argv):
     if plugin is None:
         err('no valid plugin for that URL found')
     plugin = plugin()
-    data = urllib2.urlopen(url).read()
+
+    request = urllib2.Request(url)
+    request.add_header('User-Agent', config.user_agent)
+    opener = urllib2.build_opener()
+    data = opener.open(request).read()
     try:
         video_url, video_title, video_type = plugin.parse(url, data)
     except PluginError, e:

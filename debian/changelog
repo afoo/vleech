@@ -1,3 +1,10 @@
+vleech (0.2-1) unstable; urgency=low
+
+  * new version
+  * add support for myvideo.de and guba.com
+
+ -- Jan Hülsbergen <afoo42@gmail.com>  Tue, 12 Aug 2008 02:05:40 +0200
+
 vleech (0.1-1) unstable; urgency=low
 
   * initial release 

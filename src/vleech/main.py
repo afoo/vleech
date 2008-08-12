@@ -88,6 +88,8 @@ def main(argv):
     print 'video title:', video_title
     video_file = make_video_filename(video_title, video_type)
     print 'filename:', video_file
+    if os.path.exists(video_file):
+        err('%s already exists' % video_file)
     downloaders = dict(
         curl = lambda f, url: ('curl', '-L', '-o', f, '-A', config.user_agent, url),
         wget = lambda f, url: ('wget', '-O', f, '-U', config.user_agent, url))

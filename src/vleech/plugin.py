@@ -7,6 +7,8 @@ and implement the parse(self, url, data) method.
 
 __all__ = ['PluginError', 'plugins', 'Plugin']
 
+import re
+
 class PluginError(Exception):
     pass
 

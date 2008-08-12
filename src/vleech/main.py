@@ -22,7 +22,7 @@ class Config(object):
 
     # defaults
     plugin_dir = os.path.join(os.environ['HOME'], '.vleech/siteplugins/')
-    user_agent = 'Mozilla'
+    user_agent = 'Vleech 0.2'
     downloader = 'curl' # or wget
 
     def __init__(self):
